@@ -46,32 +46,54 @@ ProduceCrosses( float s, float t )
 	v = Quantize( v );
 
 	// vec3 n = << s and t interpolation equation with normal vectors >>
-    vec3 n normalize(N0 + s*N01 + t*N02);
+    vec3 n = normalize(N0 + s*N01 + t*N02);
 	gN = normalize( gl_NormalMatrix * n ); // normal vector
 
 	vec4 ECposition = vec4(uQuantize*v, 1.);
-	gL = ?????
-	gE = ?????
+	gL = normalize(LIGHTPOSITION - ECposition.xyz);
+	gE = normalize(-ECposition.xyz);
 
 	// **Here's where uSize comes in: **
-
+    float originalX = v.x; 
 	// translate v.x to the left side of the x cross-line you want to draw:
-	?????
+	v.x = originalX - uSize;
 	gl_Position = gl_ModelViewProjectionMatrix * vec4(v,1.);
 	EmitVertex();
 	// translate v.x to the right side of the x cross-line you want to draw:
-	?????
+	v.x = originalX + uSize;
 	gl_Position = gl_ModelViewProjectionMatrix * vec4(v,1.);
 	EmitVertex();
 	EndPrimitive( );
 	// translate v.x back to its original value:
-	?????
+	v.x = originalX;
 
 	// now do the same for v.y:
-	??????????
+	float originalY = v.y;
+    // translate v.y to the left side of the y cross-line I am drawing
+    v.y = originalY - uSize;
+    gl_Position = gl_ModelViewProjectionMatrix * vec4(v,1.);
+
+    EmitVertex();
+    v.y = originalY + uSize;
+    gl_Position = gl_ModelViewProjectionMatrix * vec4(v,1.);
+    EmitVertex();
+    EndPrimitive();
+    // translate back
+    v.y = originalY;
 
 	// now do the same for v.z:
-	??????????
+	float originalZ = v.z;
+    //translate v.z 
+    v.z = originalZ - uSize;
+    gl_Position = gl_ModelViewProjectionMatrix * vec4(v, 1.);
+    EmitVertex();
+    v.z = originalZ + uSize;
+    gl_Position = gl_ModelViewProjectionMatrix * vec4(v,1.);
+    EmitVertex();
+    EndPrimitive();
+
+    // transalte back 
+    v.z = originalZ;
 }
 
 

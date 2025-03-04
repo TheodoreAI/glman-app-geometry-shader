@@ -12,7 +12,7 @@ void main( )
     vec3 Normal = normalize(gN);
     vec3 Light = normalize(gL);
     vec3 Eye = normalize(gE);
-    vec3 myColor = uColor; // default color
+    vec3 myColor = uColor.rgb; // default color
     vec3 mySpecularColor = vec3( 1.0, 1.0, 1.0 ); // specular highlight color
     
     vec3 ambient = uKa * myColor;
