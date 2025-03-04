@@ -16,7 +16,6 @@ out vec3	gN;		 // normal vector
 out vec3	gL;		 // vector from point to light
 out vec3	gE;		 // vector from point to eye
 
-
 vec3 V0, V1, V2;
 vec3 V01, V02;
 vec3 N0, N1, N2;
@@ -41,13 +40,16 @@ Quantize( vec3 v ){
 void
 ProduceCrosses( float s, float t )
 {
-	vec3 v = << s and t interpolation equation with vertices >>
+	//vec3 v = << s and t interpolation equation with vertices >>
+
+    vec3 v = V0 + s*V01 +t*V02; 
 	v = Quantize( v );
 
-	vec3 n = << s and t interpolation equation with normal vectors >>
+	// vec3 n = << s and t interpolation equation with normal vectors >>
+    vec3 n normalize(N0 + s*N01 + t*N02);
 	gN = normalize( gl_NormalMatrix * n ); // normal vector
 
-	vec4 ECposition = ?????
+	vec4 ECposition = vec4(uQuantize*v, 1.);
 	gL = ?????
 	gE = ?????
 
