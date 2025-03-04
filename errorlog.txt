@@ -1,0 +1,4 @@
+
+ERROR: 0:83: 'd' : redefinition 
+
+
