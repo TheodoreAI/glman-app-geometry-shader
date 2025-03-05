@@ -1,4 +1,5 @@
 
-ERROR: 0:83: 'd' : redefinition 
+ERROR: 0:52: '*' : wrong operand types no operation '*' exists that takes a left-hand operand of type '4X4 matrix of highp float' and a right operand of type '3-component vector of highp float' (or there is no acceptable conversion)
+ERROR: 0:53: 'constructor' : too many arguments 
 
 

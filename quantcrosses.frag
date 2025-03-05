@@ -1,7 +1,7 @@
 #version 330 compatibility
 uniform float uKa, uKd, uKs; // coefficients of each type of lighting
 uniform float uShininess; // specular exponent
-uniform vec3 uColor;
+uniform vec4 uColor;
 
 in vec3 gN; // normal vector
 in vec3 gL; // vector from point to light
@@ -24,7 +24,7 @@ void main( )
         vec3 ref = normalize( reflect( -Light, Normal ) );
         float cosphi = dot( Eye, ref );
         if( cosphi > 0. )
-        s = pow( max( cosphi, 0. ), uShininess );
+        s = pow( cosphi, uShininess );
     }
     vec3 specular = uKs * s * mySpecularColor;
     gl_FragColor = vec4( ambient + diffuse + specular, 1. );

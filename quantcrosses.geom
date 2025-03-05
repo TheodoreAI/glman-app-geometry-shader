@@ -49,7 +49,7 @@ ProduceCrosses( float s, float t )
     vec3 n = normalize(N0 + s*N01 + t*N02);
 	gN = normalize( gl_NormalMatrix * n ); // normal vector
 
-	vec4 ECposition = vec4(uQuantize*v, 1.);
+	vec4 ECposition = gl_ModelViewMatrix * vec4( v, 1.);
 	gL = normalize(LIGHTPOSITION - ECposition.xyz);
 	gE = normalize(-ECposition.xyz);
 
